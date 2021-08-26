@@ -1,0 +1,7 @@
+D:\Sources\LocalStore\LocalStore.Domain\bin\Debug\LocalStore.Domain.dll.config
+D:\Sources\LocalStore\LocalStore.Domain\bin\Debug\LocalStore.Domain.dll
+D:\Sources\LocalStore\LocalStore.Domain\bin\Debug\LocalStore.Domain.pdb
+D:\Sources\LocalStore\LocalStore.Domain\obj\Debug\LocalStore.Domain.csproj.AssemblyReference.cache
+D:\Sources\LocalStore\LocalStore.Domain\obj\Debug\LocalStore.Domain.csproj.CoreCompileInputs.cache
+D:\Sources\LocalStore\LocalStore.Domain\obj\Debug\LocalStore.Domain.dll
+D:\Sources\LocalStore\LocalStore.Domain\obj\Debug\LocalStore.Domain.pdb
