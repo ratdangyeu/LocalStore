@@ -1,5 +1,6 @@
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Optimization;
 using System.Web.Routing;
 
 namespace LocalStore.WebApp
@@ -11,6 +12,7 @@ namespace LocalStore.WebApp
             AreaRegistration.RegisterAllAreas();
             UnityConfig.RegisterComponents();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }

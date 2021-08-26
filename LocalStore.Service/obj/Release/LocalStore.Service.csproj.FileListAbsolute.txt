@@ -1,0 +1,16 @@
+D:\Sources\LocalStore\LocalStore.Service\bin\Release\LocalStore.Service.dll
+D:\Sources\LocalStore\LocalStore.Service\bin\Release\LocalStore.Service.pdb
+D:\Sources\LocalStore\LocalStore.Service\bin\Release\AutoMapper.dll
+D:\Sources\LocalStore\LocalStore.Service\bin\Release\LocalStore.Domain.dll
+D:\Sources\LocalStore\LocalStore.Service\bin\Release\PagedList.dll
+D:\Sources\LocalStore\LocalStore.Service\bin\Release\PagedList.Mvc.dll
+D:\Sources\LocalStore\LocalStore.Service\bin\Release\LocalStore.Domain.pdb
+D:\Sources\LocalStore\LocalStore.Service\bin\Release\LocalStore.Domain.dll.config
+D:\Sources\LocalStore\LocalStore.Service\bin\Release\AutoMapper.xml
+D:\Sources\LocalStore\LocalStore.Service\bin\Release\PagedList.xml
+D:\Sources\LocalStore\LocalStore.Service\bin\Release\PagedList.Mvc.xml
+D:\Sources\LocalStore\LocalStore.Service\obj\Release\LocalStore.Service.csproj.AssemblyReference.cache
+D:\Sources\LocalStore\LocalStore.Service\obj\Release\LocalStore.Service.csproj.CoreCompileInputs.cache
+D:\Sources\LocalStore\LocalStore.Service\obj\Release\LocalStore.Service.csproj.CopyComplete
+D:\Sources\LocalStore\LocalStore.Service\obj\Release\LocalStore.Service.dll
+D:\Sources\LocalStore\LocalStore.Service\obj\Release\LocalStore.Service.pdb

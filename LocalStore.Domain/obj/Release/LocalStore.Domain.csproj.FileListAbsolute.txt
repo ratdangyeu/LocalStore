@@ -1,0 +1,6 @@
+D:\Sources\LocalStore\LocalStore.Domain\bin\Release\LocalStore.Domain.dll.config
+D:\Sources\LocalStore\LocalStore.Domain\bin\Release\LocalStore.Domain.dll
+D:\Sources\LocalStore\LocalStore.Domain\bin\Release\LocalStore.Domain.pdb
+D:\Sources\LocalStore\LocalStore.Domain\obj\Release\LocalStore.Domain.csproj.CoreCompileInputs.cache
+D:\Sources\LocalStore\LocalStore.Domain\obj\Release\LocalStore.Domain.dll
+D:\Sources\LocalStore\LocalStore.Domain\obj\Release\LocalStore.Domain.pdb
