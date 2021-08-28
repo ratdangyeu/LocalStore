@@ -26,10 +26,13 @@ namespace LocalStore.WebApp
                       "~/adminlte/plugins/fontawesome-free/css/all.min.css",
                       "~/adminlte/css/adminlte.min.css",
                       "~/adminlte/plugins/summernote/summernote-bs4.min.css",
+                      "~/adminlte/plugins/jsgrid/jsgrid.min.css",
+                      "~/adminlte/plugins/jsgrid/jsgrid-theme.min.css",
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/adminlte/js").Include(
                       "~/adminlte/js/adminlte.min.js",
+                      "~/adminlte/plugins/jsgrid/jsgrid.min.js",
                       "~/adminlte/plugins/summernote/summernote-bs4.min.js"));
         }
     }

@@ -2,7 +2,9 @@
 {
     public class BaseSearchModel
     {
-        public string Keywords { get; set; }
+        public string Code { get; set; }
+
+        public string Name { get; set; }
 
         public int PageNumber { get; set; }
 

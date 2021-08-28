@@ -33,6 +33,8 @@ namespace LocalStore.Service
                 throw new ArgumentNullException(nameof(entity));
             }
 
+            entity.Id = Guid.NewGuid().ToString("D");
+
             _warehouseRepository.InsertOnSubmit(entity);
             _dataContext.SubmitChanges();            
         }
@@ -120,15 +122,22 @@ namespace LocalStore.Service
 
         public IPagedList<Warehouse> Get(WareHouseSearchContext ctx)
         {
-            ctx.Keywords = ctx.Keywords?.Trim();
+            ctx.Code = ctx.Code?.Trim();
+            ctx.Name = ctx.Name?.Trim();         
 
             var query = from p in _warehouseRepository select p;
 
-            if (ctx.Keywords != null && ctx.Keywords.Length > 0)
+            if (ctx.Code != null && ctx.Code.Length > 0)
             {
                 query = from p in query
-                        where (!string.IsNullOrEmpty(p.Code) && p.Code.Contains(ctx.Keywords)) ||
-                              (!string.IsNullOrEmpty(p.Name) && p.Name.Contains(ctx.Keywords))
+                        where p.Code != null && p.Code.Contains(ctx.Code)                              
+                        select p;
+            }
+
+            if (ctx.Name != null && ctx.Name.Length > 0)
+            {
+                query = from p in query
+                        where p.Name != null && p.Name.Contains(ctx.Name)
                         select p;
             }
 

@@ -1,4 +1,5 @@
 using AutoMapper;
+using LocalStore.Service;
 using LocalStore.WebApp.MapperConfig.MapperProfile;
 using System.Web.Mvc;
 using Unity;
@@ -27,7 +28,8 @@ namespace LocalStore.WebApp
             container.RegisterInstance(mapper);
 
             // Services
-            
+            container.RegisterType<IWareHouseService, WareHouseService>();
+
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }
