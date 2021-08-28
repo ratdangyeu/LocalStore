@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace LocalStore.WebApp.Controllers
 {
-    public class HomeController : Controller
+    public class WareHouseController : Controller
     {
-        // GET: Home
+        // GET: WareHouse
         public ActionResult Index()
         {
             return View();

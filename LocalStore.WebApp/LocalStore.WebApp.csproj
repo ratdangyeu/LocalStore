@@ -154,11 +154,13 @@
     <Content Include="adminlte\img\credit\paypal2.png" />
     <Content Include="adminlte\img\credit\visa.png" />
     <Content Include="adminlte\img\default-150x150.png" />
+    <Content Include="adminlte\img\home-bg.jpg" />
     <Content Include="adminlte\img\icons.png" />
     <Content Include="adminlte\img\photo1.png" />
     <Content Include="adminlte\img\photo2.png" />
     <Content Include="adminlte\img\photo3.jpg" />
     <Content Include="adminlte\img\photo4.jpg" />
+    <Content Include="adminlte\img\poi.ico" />
     <Content Include="adminlte\img\poi.png" />
     <Content Include="adminlte\img\prod-1.jpg" />
     <Content Include="adminlte\img\prod-2.jpg" />
@@ -2220,6 +2222,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\WareHouseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2236,8 +2239,8 @@
     <Content Include="Scripts\jquery-3.6.0.slim.min.map" />
     <Content Include="Scripts\jquery-3.6.0.min.map" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\WareHouse\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
