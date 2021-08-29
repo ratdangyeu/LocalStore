@@ -51,18 +51,24 @@ namespace LocalStore.WebApp.Controllers
                 }
             }
 
-            return JsonConvert.SerializeObject(models);
+            return JsonConvert.SerializeObject(new BaseResult<List<WareHouseModel>> { 
+                Data = models,
+                ItemsCount = entities.TotalItemCount
+            });
         }
 
-        public void InsertData(WareHouseModel model)
+        public string InsertData(WareHouseModel model)
         {
-            if (model == null)
+            if (model == null || _warehouseService.ExistAsync(model.Code))
             {
-
+                return CommonString.InsertFailed;
             }
-
-            var entity = _mapper.Map<WareHouseModel, Warehouse>(model);
-            _warehouseService.InsertAsync(entity);
+            else
+            {
+                var entity = _mapper.Map<WareHouseModel, Warehouse>(model);
+                _warehouseService.InsertAsync(entity);
+                return CommonString.InsertSuccess;
+            }            
         }
         #endregion
 
@@ -70,13 +76,15 @@ namespace LocalStore.WebApp.Controllers
         private WareHouseSearchModel GetFilter()
         {
             NameValueCollection filter = HttpUtility.ParseQueryString(Request.Url.Query);
+            int.TryParse(filter["PageIndex"], out int pageNumber);
+            int.TryParse(filter["PageSize"], out int pageSize);
 
             return new WareHouseSearchModel
             {
                 Code = filter["Code"],
                 Name = filter["Name"],
-                PageNumber = 1,
-                PageSize = 20
+                PageNumber = pageNumber,
+                PageSize = pageSize
             };
         }
         #endregion

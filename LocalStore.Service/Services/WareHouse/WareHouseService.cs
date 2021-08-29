@@ -71,7 +71,7 @@ namespace LocalStore.Service
         public bool ExistAsync(string code)
         {
             return _warehouseRepository.Any(
-                x => !string.IsNullOrEmpty(x.Code) &&
+                x => x.Code != null &&
                 x.Code.Equals(code));
         }
 

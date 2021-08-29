@@ -52,7 +52,6 @@ D:\Sources\LocalStore\LocalStore.WebApp\bin\roslyn\VBCSCompiler.exe
 D:\Sources\LocalStore\LocalStore.WebApp\bin\roslyn\VBCSCompiler.exe.config
 D:\Sources\LocalStore\LocalStore.WebApp\bin\Antlr3.Runtime.dll
 D:\Sources\LocalStore\LocalStore.WebApp\bin\AutoMapper.dll
-D:\Sources\LocalStore\LocalStore.WebApp\bin\FluentValidation.dll
 D:\Sources\LocalStore\LocalStore.WebApp\bin\LocalStore.Domain.dll
 D:\Sources\LocalStore\LocalStore.WebApp\bin\LocalStore.Service.dll
 D:\Sources\LocalStore\LocalStore.WebApp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
@@ -78,7 +77,6 @@ D:\Sources\LocalStore\LocalStore.WebApp\bin\LocalStore.Domain.dll.config
 D:\Sources\LocalStore\LocalStore.WebApp\bin\LocalStore.Service.pdb
 D:\Sources\LocalStore\LocalStore.WebApp\bin\Antlr3.Runtime.pdb
 D:\Sources\LocalStore\LocalStore.WebApp\bin\AutoMapper.xml
-D:\Sources\LocalStore\LocalStore.WebApp\bin\FluentValidation.xml
 D:\Sources\LocalStore\LocalStore.WebApp\bin\Newtonsoft.Json.xml
 D:\Sources\LocalStore\LocalStore.WebApp\bin\PagedList.xml
 D:\Sources\LocalStore\LocalStore.WebApp\bin\PagedList.Mvc.xml

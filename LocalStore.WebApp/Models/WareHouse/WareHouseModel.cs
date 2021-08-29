@@ -1,6 +1,4 @@
-﻿using FluentValidation;
-
-namespace LocalStore.WebApp.Models
+﻿namespace LocalStore.WebApp.Models
 {
     public class WareHouseModel : BaseModel
     {
@@ -21,28 +19,6 @@ namespace LocalStore.WebApp.Models
         public WareHouseModel()
         {
             Inactive = false;
-        }
-    }
-
-    public class WareHouseValidator : AbstractValidator<WareHouseModel>
-    {
-        public WareHouseValidator()
-        {
-            RuleFor(x => x.Code).NotEmpty()
-                .WithMessage("Mã không được để trống");
-            RuleFor(x => x.Code).MaximumLength(255)
-                .WithMessage("Mã không quá 255 ký tự");
-
-            RuleFor(x => x.Name).NotEmpty()
-                .WithMessage("Tên không được để trống");
-            RuleFor(x => x.Name).MaximumLength(255)
-                .WithMessage("Tên không quá 255 ký tự");
-
-            RuleFor(x => x.Address).MaximumLength(255)
-                .WithMessage("Địa chỉ không quá 255 ký tự");
-
-            RuleFor(x => x.Description).MaximumLength(255)
-                .WithMessage("Mô tả không quá 255 ký tự");
         }
     }
 }

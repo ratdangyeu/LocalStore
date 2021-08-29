@@ -1,13 +1,18 @@
-﻿
+﻿@using LocalStore.WebApp.Models
+
 <div id="jsGrid"></div>
 
 @section scripts
 {
-    <script>
+    <script>        
+        toastr.options = {
+            "positionClass": "toast-bottom-center"
+        };
+
         $(function () {
             $("#jsGrid").jsGrid({
                 width: "100%",
-                height: "500px",
+                height: "550px",
 
                 inserting: true,
                 editing: true,
@@ -15,9 +20,7 @@
                 autoload: true,
                 sorting: true,
                 paging: true,
-
-                pageSize: 20,
-                pageButtonCount: 5,
+                pageLoading: true,
 
                 controller: {
                     loadData: function (filter) {
@@ -35,7 +38,10 @@
                             type: "POST",
                             url: '@Url.Action("InsertData")',
                             data: item,
-                            dataType: "json"
+                            dataType: "text"
+                        }).done(function (msg) {
+                            toastr.info(msg);
+                            $('#jsGrid').jsGrid('loadData');
                         });
                     },
 
@@ -45,6 +51,9 @@
                             url: '/WareHouse/UpdateData/' + item.Id,
                             data: item,
                             dataType: "json"
+                        }).done(function (msg) {
+                            toastr.info(msg);
+                            $('#jsGrid').jsGrid('loadData');
                         });
                     },
 
@@ -53,16 +62,37 @@
                             type: "GET",
                             url: '/WareHouse/DeleteData/' + item.Id,
                             dataType: "json"
+                        }).done(function (msg) {
+                            toastr.info(msg);
+                            $('#jsGrid').jsGrid('loadData');
                         });
                     }
                 },
 
                 fields: [
-                    { name: "Code", title: "Mã kho", type: "text", width: 150, validate: "required" },
-                    { name: "Name", title: "Tên kho", type: "text", width: 150, validate: "required" },
-                    { name: "Address", title: "Địa chỉ", type: "text", width: 300, filtering: false },
-                    { name: "Description", title: "Mô tả", type: "text", width: 300, filtering: false },
-                    { name: "Inactive", title: "Kích hoạt", type: "checkbox", width: 100, validate: "required" },
+                    {
+                        name: "Code", title: "Mã kho", type: "text", width: 150, validate: [
+                            { validator: "required", message: '@CommonString.WareHouseCodeRequired' },
+                            { validator: "maxLength", message: '@string.Format(CommonString.WareHouseCodeLength, 255)', param: 255 }
+                        ]
+                    },
+                    {
+                        name: "Name", title: "Tên kho", type: "text", width: 150, validate: [
+                            { validator: "required", message: '@CommonString.WareHouseNameRequired' },
+                            { validator: "maxLength", message: '@string.Format(CommonString.WareHouseNameLength, 100)', param: 100 }
+                        ]
+                    },
+                    {
+                        name: "Address", title: "Địa chỉ", type: "text", width: 300, filtering: false, validate: {
+                            validator: "maxLength", message: '@string.Format(CommonString.WareHouseAddressLength, 255)', param: 255
+                        }
+                    },
+                    {
+                        name: "Description", title: "Mô tả", type: "text", width: 300, filtering: false, validate: {
+                            validator: "maxLength", message: '@string.Format(CommonString.WareHouseDescriptionLength, 255)', param: 255
+                        }
+                    },
+                    { name: "Inactive", title: "Ngừng kích hoạt", type: "checkbox", width: 100, validate: "required" },
                     { type: "control"}
                 ]
             });
