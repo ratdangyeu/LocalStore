@@ -11,8 +11,10 @@ namespace LocalStore.WebApp.MapperConfig.MapperProfile
         {
             #region WareHouse
             CreateMap<Warehouse, WareHouseModel>();
-            CreateMap<WareHouseModel, Warehouse>();
-            CreateMap<Warehouse, Warehouse>();
+            CreateMap<WareHouseModel, Warehouse>()
+                .ForMember(x => x.Code, opt => opt.Ignore());
+            CreateMap<Warehouse, Warehouse>()
+                .ForMember(x => x.Code, opt => opt.Ignore());
 
             CreateMap<WareHouseSearchModel, WareHouseSearchContext>();
             #endregion

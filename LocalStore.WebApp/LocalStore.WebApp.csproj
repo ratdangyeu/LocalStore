@@ -52,6 +52,9 @@
     <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.10.3.3\lib\netstandard2.0\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -2223,11 +2226,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\UnityValidatorFactory.cs" />
     <Compile Include="MapperConfig\MapperProfile\LocalStoreProfile.cs" />
     <Compile Include="Models\Base\BaseModel.cs" />
     <Compile Include="Models\Base\BaseResult.cs" />
     <Compile Include="Models\Base\BaseSearchModel.cs" />
-    <Compile Include="Models\Common\CommonString.cs" />
+    <Compile Include="Common\CommonString.cs" />
     <Compile Include="Models\WareHouse\WareHouseModel.cs" />
     <Compile Include="Models\WareHouse\WareHouseSearchModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -9,5 +9,9 @@ namespace LocalStore.WebApp.Models
 
         [JsonProperty("itemsCount")]
         public int ItemsCount { get; set; }
+
+        public string Message { get; set; }
+
+        public bool Success { get; set; }
     }
 }

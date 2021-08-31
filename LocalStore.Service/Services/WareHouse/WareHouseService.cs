@@ -50,7 +50,7 @@ namespace LocalStore.Service
 
             if (e != null)
             {
-                e = _mapper.Map<Warehouse>(entity);
+                e = _mapper.Map(entity, e);
                 _dataContext.SubmitChanges();
             }
         }

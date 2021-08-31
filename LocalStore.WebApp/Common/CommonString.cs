@@ -1,4 +1,4 @@
-﻿namespace LocalStore.WebApp.Models
+﻿namespace LocalStore.WebApp
 {
     public static class CommonString
     {
@@ -9,6 +9,10 @@
         public static string InsertFailed = "Thêm mới thất bại";
         public static string UpdateFailed = "Cập nhật không thành công";
         public static string DeleteFailed = "Xóa không thành công";
+        public static string DeleteConfirm = "Bạn có chắc chắn muốn xóa?";
+        public static string NoDataContent = "Không có dữ liệu bản ghi";
+        public static string LoadMessage = "Vui lòng chờ ...";
+        public static string YesButtonContent = "Đồng ý";
         #endregion
 
         #region WareHouseValidator

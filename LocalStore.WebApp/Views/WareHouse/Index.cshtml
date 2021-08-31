@@ -1,14 +1,9 @@
-﻿@using LocalStore.WebApp.Models
-
+﻿
 <div id="jsGrid"></div>
 
 @section scripts
 {
-    <script>        
-        toastr.options = {
-            "positionClass": "toast-bottom-center"
-        };
-
+    <script>                
         $(function () {
             $("#jsGrid").jsGrid({
                 width: "100%",
@@ -18,9 +13,14 @@
                 editing: true,
                 filtering: true,
                 autoload: true,
-                sorting: true,
                 paging: true,
                 pageLoading: true,
+                //sorting: true,
+
+                confirmDeleting: false,
+                noDataContent: '@CommonString.NoDataContent',
+                //loadMessage: '@CommonString.LoadMessage',
+                //deleteConfirm: decodeURI('@CommonString.DeleteConfirm'),
 
                 controller: {
                     loadData: function (filter) {
@@ -38,10 +38,22 @@
                             type: "POST",
                             url: '@Url.Action("InsertData")',
                             data: item,
-                            dataType: "text"
-                        }).done(function (msg) {
-                            toastr.info(msg);
-                            $('#jsGrid').jsGrid('loadData');
+                            dataType: "json"
+                        }).done(function (res) {                            
+                            if (!res.Success) {
+                                toastr.warning(res.Message, '',
+                                {
+                                    positionClass: 'toast-top-center'
+                                });
+                            }
+                            else {
+                                toastr.info(res.Message, '',
+                                {
+                                    positionClass: 'toast-top-center'
+                                });
+                            }
+                            
+                            $('#jsGrid').jsGrid('loadData');                            
                         });
                     },
 
@@ -52,47 +64,77 @@
                             data: item,
                             dataType: "json"
                         }).done(function (msg) {
-                            toastr.info(msg);
+                            if (!res.Success) {
+                                toastr.warning(res.Message, '',
+                                {
+                                    positionClass: 'toast-top-center'
+                                });
+                            }
+                            else {
+                                toastr.info(res.Message, '',
+                                {
+                                    positionClass: 'toast-top-center'
+                                });
+                            }
+
                             $('#jsGrid').jsGrid('loadData');
                         });
                     },
 
                     deleteItem: function (item) {
-                        return $.ajax({
-                            type: "GET",
-                            url: '/WareHouse/DeleteData/' + item.Id,
-                            dataType: "json"
-                        }).done(function (msg) {
-                            toastr.info(msg);
-                            $('#jsGrid').jsGrid('loadData');
-                        });
+                        toastr.options = {
+                            "closeButton": true,                            
+                            "positionClass": "toast-top-center",                            
+                            "timeOut": 0,
+                            "extendedTimeOut": 0,
+                            "tapToDismiss": false
+                        };
+
+                        toastr.error('@CommonString.DeleteConfirm' +
+                                     '<br /><br /><button type="button" id="actionDelete" class="btn btn-light">' +
+                                     '@CommonString.YesButtonContent' + '</button>', '',
+                            {
+                                onShown: function (toast) {
+                                    $('#actionDelete').click(function () {
+                                        toastr.remove();
+                                        toastr.options.closeButton = false;
+                                        toastr.options.tapToDismiss = true;
+                                        toastr.options.timeOut = 5000;
+                                        toastr.options.extendedTimeOut = 1000;
+                                        $.ajax({
+                                            type: "GET",
+                                            url: '/WareHouse/DeleteData/' + item.Id,
+                                            dataType: "json"
+                                        }).done(function (res) {
+                                            if (!res.Success) {
+                                                toastr.warning(res.Message);
+                                            }
+                                            else {
+                                                toastr.info(res.Message);
+                                            }
+
+                                            $('#jsGrid').jsGrid('loadData');
+                                        });
+                                    });
+                                },
+
+                                onHidden: function () {
+                                    toastr.options.closeButton = false;
+                                    toastr.options.tapToDismiss = true;
+                                    toastr.options.timeOut = 5000;
+                                    toastr.options.extendedTimeOut = 1000;
+                                }
+                            });
+                        
                     }
                 },
 
                 fields: [
-                    {
-                        name: "Code", title: "Mã kho", type: "text", width: 150, validate: [
-                            { validator: "required", message: '@CommonString.WareHouseCodeRequired' },
-                            { validator: "maxLength", message: '@string.Format(CommonString.WareHouseCodeLength, 255)', param: 255 }
-                        ]
-                    },
-                    {
-                        name: "Name", title: "Tên kho", type: "text", width: 150, validate: [
-                            { validator: "required", message: '@CommonString.WareHouseNameRequired' },
-                            { validator: "maxLength", message: '@string.Format(CommonString.WareHouseNameLength, 100)', param: 100 }
-                        ]
-                    },
-                    {
-                        name: "Address", title: "Địa chỉ", type: "text", width: 300, filtering: false, validate: {
-                            validator: "maxLength", message: '@string.Format(CommonString.WareHouseAddressLength, 255)', param: 255
-                        }
-                    },
-                    {
-                        name: "Description", title: "Mô tả", type: "text", width: 300, filtering: false, validate: {
-                            validator: "maxLength", message: '@string.Format(CommonString.WareHouseDescriptionLength, 255)', param: 255
-                        }
-                    },
-                    { name: "Inactive", title: "Ngừng kích hoạt", type: "checkbox", width: 100, validate: "required" },
+                    { name: "Code", title: "Mã kho", type: "text", width: 150, editing: false },
+                    { name: "Name", title: "Tên kho", type: "text", width: 150 },
+                    { name: "Address", title: "Địa chỉ", type: "text", width: 300, filtering: false },
+                    { name: "Description", title: "Mô tả", type: "text", width: 300, filtering: false },
+                    { name: "Inactive", title: "Ngừng kích hoạt", type: "checkbox", width: 100 },
                     { type: "control"}
                 ]
             });

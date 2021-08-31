@@ -96,3 +96,5 @@ D:\Sources\LocalStore\LocalStore.WebApp\obj\Debug\LocalStore.WebApp.csproj.CoreC
 D:\Sources\LocalStore\LocalStore.WebApp\obj\Debug\LocalStore.WebApp.csproj.CopyComplete
 D:\Sources\LocalStore\LocalStore.WebApp\obj\Debug\LocalStore.WebApp.dll
 D:\Sources\LocalStore\LocalStore.WebApp\obj\Debug\LocalStore.WebApp.pdb
+D:\Sources\LocalStore\LocalStore.WebApp\bin\FluentValidation.dll
+D:\Sources\LocalStore\LocalStore.WebApp\bin\FluentValidation.xml
