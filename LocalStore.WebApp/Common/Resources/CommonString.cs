@@ -2,7 +2,7 @@
 {
     public static class CommonString
     {
-        #region CommonNotifies
+        #region Notifies
         public static string InsertSuccess = "Thêm mới thành công";
         public static string UpdateSuccess = "Cập nhật thành công";
         public static string DeleteSuccess = "Xóa thành công";
@@ -25,6 +25,17 @@
         #region CommonValidators
         public static string CommonAddressLength = "Địa chỉ không vượt quá {0} ký tự";
         public static string CommonDescriptionLength = "Mô tả không vượt quá {0} ký tự";
+        #endregion
+
+        #region WareHouseFields
+        public static string WareHouseFieldsCode = "Mã kho";
+        public static string WareHouseFieldsName = "Tên kho";
+        #endregion
+
+        #region CommonFields
+        public static string CommonFieldsAddress = "Địa chỉ";
+        public static string CommonFieldsDescription = "Mô tả";
+        public static string CommonFieldsInactive = "Ngừng kích hoạt";
         #endregion
     }
 }

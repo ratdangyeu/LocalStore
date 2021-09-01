@@ -38,20 +38,22 @@
                         return $.ajax({
                             type: "POST",
                             url: '@Url.Action("InsertData")',
-                            data: item,
+                            data: {
+                               model: item, __RequestVerificationToken: getToken()
+                            },
                             dataType: "json"
                         }).done(function (res) {                            
                             if (!res.Success) {
-                                toastr.error(res.Message, '',
-                                {
+                               toastr.error(res.Message, '',
+                               {
                                     positionClass: 'toast-top-center'
-                                });
+                               });
                             }
                             else {
-                                toastr.info(res.Message, '',
-                                {
+                               toastr.info(res.Message, '',
+                               {
                                     positionClass: 'toast-top-center'
-                                });
+                               });
                             }
                             
                             $('#jsGrid').jsGrid('loadData');                            
@@ -60,22 +62,24 @@
 
                     updateItem: function (item) {
                         return $.ajax({
-                            type: "GET",
+                            type: "POST",
                             url: '/WareHouse/UpdateData/' + item.Id,
-                            data: item,
+                            data: {
+                               model: item, __RequestVerificationToken: getToken()
+                            },
                             dataType: "json"
-                        }).done(function (msg) {
+                        }).done(function (res) {
                             if (!res.Success) {
-                                toastr.error(res.Message, '',
-                                {
+                               toastr.error(res.Message, '',
+                               {
                                     positionClass: 'toast-top-center'
-                                });
+                               });
                             }
                             else {
-                                toastr.info(res.Message, '',
-                                {
+                               toastr.info(res.Message, '',
+                               {
                                     positionClass: 'toast-top-center'
-                                });
+                               });
                             }
 
                             $('#jsGrid').jsGrid('loadData');
@@ -103,8 +107,11 @@
                                         toastr.options.timeOut = 5000;
                                         toastr.options.extendedTimeOut = 1000;
                                         $.ajax({
-                                            type: "GET",
+                                            type: "POST",
                                             url: '/WareHouse/DeleteData/' + item.Id,
+                                            data: {
+                                                __RequestVerificationToken: getToken()
+                                            },
                                             dataType: "json"
                                         }).done(function (res) {
                                             if (!res.Success) {
@@ -125,21 +132,26 @@
                                     toastr.options.timeOut = 5000;
                                     toastr.options.extendedTimeOut = 1000;
                                 }
-                            });
-                        
+                            });                        
                     }
                 },
 
                 fields: [
-                    { name: "Code", title: "Mã kho", type: "text", width: 150, editing: false },
-                    { name: "Name", title: "Tên kho", type: "text", width: 150 },
-                    { name: "Address", title: "Địa chỉ", type: "text", width: 300, filtering: false },
-                    { name: "Description", title: "Mô tả", type: "text", width: 300, filtering: false },
-                    { name: "Inactive", title: "Ngừng kích hoạt", type: "checkbox", width: 100 },
+                    { name: "Code", title: '@CommonString.WareHouseFieldsCode', type: "text", width: 150, editing: false },
+                    { name: "Name", title: '@CommonString.WareHouseFieldsName', type: "text", width: 150 },
+                    { name: "Address", title: '@CommonString.CommonFieldsAddress', type: "text", width: 300, filtering: false },
+                    { name: "Description", title: '@CommonString.CommonFieldsDescription', type: "text", width: 300, filtering: false },
+                    { name: "Inactive", title: '@CommonString.CommonFieldsInactive', type: "checkbox", width: 100 },
                     { type: "control"}
                 ]
             });
         });
+
+        var getToken = function () {
+            var token = '@Html.AntiForgeryToken()';
+            token = $(token).val();
+            return token;
+        }
     </script>
 }
 

@@ -65,6 +65,7 @@ namespace LocalStore.WebApp.Controllers
         }
 
         // Thêm mới dữ liệu
+        [ValidateAntiForgeryToken]
         public string InsertData(WareHouseModel model)
         {            
             var validatorResult = _validator.Validate(model);
@@ -99,6 +100,7 @@ namespace LocalStore.WebApp.Controllers
         }
 
         // Chỉnh sửa dữ liệu
+        [ValidateAntiForgeryToken]
         public string UpdateData(string id, WareHouseModel model)
         {
             var validatorResult = _validator.Validate(model);
@@ -132,6 +134,7 @@ namespace LocalStore.WebApp.Controllers
         }
 
         // Xóa dữ liệu
+        [ValidateAntiForgeryToken]
         public string DeleteData(string id)
         {
             if (string.IsNullOrEmpty(id))
