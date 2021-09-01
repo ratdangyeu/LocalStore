@@ -1,4 +1,4 @@
-﻿namespace LocalStore.WebApp
+﻿namespace LocalStore.WebApp.Resources
 {
     public static class CommonString
     {

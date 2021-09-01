@@ -2226,12 +2226,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helper\UnityValidatorFactory.cs" />
-    <Compile Include="MapperConfig\MapperProfile\LocalStoreProfile.cs" />
+    <Compile Include="Common\ConfigClasses\UnityValidatorFactory.cs" />
+    <Compile Include="Common\MapperProfile\LocalStoreProfile.cs" />
     <Compile Include="Models\Base\BaseModel.cs" />
     <Compile Include="Models\Base\BaseResult.cs" />
     <Compile Include="Models\Base\BaseSearchModel.cs" />
-    <Compile Include="Common\CommonString.cs" />
+    <Compile Include="Common\Resources\CommonString.cs" />
     <Compile Include="Models\WareHouse\WareHouseModel.cs" />
     <Compile Include="Models\WareHouse\WareHouseSearchModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

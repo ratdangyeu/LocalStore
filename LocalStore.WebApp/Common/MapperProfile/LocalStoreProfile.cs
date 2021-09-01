@@ -3,7 +3,7 @@ using LocalStore.Domain;
 using LocalStore.Service;
 using LocalStore.WebApp.Models;
 
-namespace LocalStore.WebApp.MapperConfig.MapperProfile
+namespace LocalStore.WebApp.MapperProfile
 {
     public class LocalStoreProfile : Profile
     {

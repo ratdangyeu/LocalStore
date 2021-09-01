@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using LocalStore.WebApp.Resources;
 
 namespace LocalStore.WebApp.Models
 {

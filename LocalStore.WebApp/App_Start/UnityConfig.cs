@@ -1,8 +1,8 @@
 using AutoMapper;
 using FluentValidation;
 using LocalStore.Service;
-using LocalStore.WebApp.Helper;
-using LocalStore.WebApp.MapperConfig.MapperProfile;
+using LocalStore.WebApp.ConfigClasses;
+using LocalStore.WebApp.MapperProfile;
 using LocalStore.WebApp.Models;
 using System.Web.Mvc;
 using Unity;

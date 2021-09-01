@@ -2,7 +2,7 @@
 using System;
 using Unity;
 
-namespace LocalStore.WebApp.Helper
+namespace LocalStore.WebApp.ConfigClasses
 {
     public class UnityValidatorFactory : ValidatorFactoryBase
     {

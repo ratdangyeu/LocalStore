@@ -1,4 +1,5 @@
-﻿
+﻿@using LocalStore.WebApp.Resources
+
 <div id="jsGrid"></div>
 
 @section scripts
@@ -41,7 +42,7 @@
                             dataType: "json"
                         }).done(function (res) {                            
                             if (!res.Success) {
-                                toastr.warning(res.Message, '',
+                                toastr.error(res.Message, '',
                                 {
                                     positionClass: 'toast-top-center'
                                 });
@@ -65,7 +66,7 @@
                             dataType: "json"
                         }).done(function (msg) {
                             if (!res.Success) {
-                                toastr.warning(res.Message, '',
+                                toastr.error(res.Message, '',
                                 {
                                     positionClass: 'toast-top-center'
                                 });
@@ -96,18 +97,18 @@
                             {
                                 onShown: function (toast) {
                                     $('#actionDelete').click(function () {
-                                        toastr.remove();
                                         toastr.options.closeButton = false;
                                         toastr.options.tapToDismiss = true;
                                         toastr.options.timeOut = 5000;
                                         toastr.options.extendedTimeOut = 1000;
+                                        toastr.clear();
                                         $.ajax({
                                             type: "GET",
                                             url: '/WareHouse/DeleteData/' + item.Id,
                                             dataType: "json"
                                         }).done(function (res) {
                                             if (!res.Success) {
-                                                toastr.warning(res.Message);
+                                                toastr.error(res.Message);
                                             }
                                             else {
                                                 toastr.info(res.Message);

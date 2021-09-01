@@ -3,6 +3,7 @@ using FluentValidation;
 using LocalStore.Domain;
 using LocalStore.Service;
 using LocalStore.WebApp.Models;
+using LocalStore.WebApp.Resources;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Collections.Specialized;
