@@ -40,10 +40,10 @@ namespace LocalStore.WebApp.Models
                 .WithMessage(string.Format(CommonString.WareHouseNameLength, 100));
 
             RuleFor(x => x.Address).MaximumLength(255)
-                .WithMessage(string.Format(CommonString.WareHouseAddressLength, 255));
+                .WithMessage(string.Format(CommonString.CommonAddressLength, 255));
 
             RuleFor(x => x.Description).MaximumLength(255)
-                .WithMessage(string.Format(CommonString.WareHouseDescriptionLength, 255));
+                .WithMessage(string.Format(CommonString.CommonDescriptionLength, 255));
         }
     }
 }

@@ -8,7 +8,7 @@
         $(function () {
             $("#jsGrid").jsGrid({
                 width: "100%",
-                height: "550px",
+                height: "600px",
 
                 inserting: true,
                 editing: true,
@@ -20,7 +20,7 @@
 
                 confirmDeleting: false,
                 noDataContent: '@CommonString.NoDataContent',
-                //loadMessage: '@CommonString.LoadMessage',
+                loadMessage: '',
                 //deleteConfirm: decodeURI('@CommonString.DeleteConfirm'),
 
                 controller: {
@@ -97,11 +97,11 @@
                             {
                                 onShown: function (toast) {
                                     $('#actionDelete').click(function () {
+                                        toastr.remove();
                                         toastr.options.closeButton = false;
                                         toastr.options.tapToDismiss = true;
                                         toastr.options.timeOut = 5000;
                                         toastr.options.extendedTimeOut = 1000;
-                                        toastr.clear();
                                         $.ajax({
                                             type: "GET",
                                             url: '/WareHouse/DeleteData/' + item.Id,
