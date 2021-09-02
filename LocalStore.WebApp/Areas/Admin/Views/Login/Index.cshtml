@@ -1,0 +1,57 @@
+﻿@model LocalStore.WebApp.Models.UserModel
+
+<div class="login-box">
+    <div class="login-logo">
+        <a href="#"><b>Đăng</b>&nbsp;nhập</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="card">
+        <div class="card-body login-card-body">
+            <p class="login-box-msg">Đăng nhập để bắt đầu công việc</p>
+            @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @Placeholder = "Email"})                        
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @Placeholder = "Mật khẩu" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">
+                                    Ghi nhớ
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </div>
+            }
+
+            <p class="mb-0">
+                <a href="@Url.Action("Register", "Login")" class="text-center">Đăng ký thành viên mới</a>
+            </p>
+        </div>
+        <!-- /.login-card-body -->
+    </div>
+</div>
+<!-- /.login-box -->

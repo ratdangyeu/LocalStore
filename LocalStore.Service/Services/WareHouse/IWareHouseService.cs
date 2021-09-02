@@ -14,7 +14,7 @@ namespace LocalStore.Service
 
         bool ExistAsync(string code);
 
-        void ActivationAsync(IEnumerable<string> ids);
+        void ActivationAsync(IEnumerable<string> ids, bool status);
 
         Warehouse GetByIdAsync(string id);
 

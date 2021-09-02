@@ -9,6 +9,18 @@ namespace LocalStore.WebApp.MapperProfile
     {
         public LocalStoreProfile()
         {
+            #region User
+            CreateMap<User, UserModel>();
+            CreateMap<UserModel, User>()
+                .ForMember(x => x.Code, opt => opt.Ignore())
+                .ForMember(x => x.UserRoles, opt => opt.Ignore());
+            CreateMap<User, User>()
+                .ForMember(x => x.Code, opt => opt.Ignore())
+                .ForMember(x => x.UserRoles, opt => opt.Ignore());
+
+            CreateMap<UserSearchModel, UserSearchContext>();
+            #endregion
+
             #region WareHouse
             CreateMap<Warehouse, WareHouseModel>();
             CreateMap<WareHouseModel, Warehouse>()

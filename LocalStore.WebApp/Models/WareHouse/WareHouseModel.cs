@@ -29,11 +29,6 @@ namespace LocalStore.WebApp.Models
     {
         public WareHouseValidator()
         {
-            RuleFor(x => x.Code).NotEmpty()
-                .WithMessage(CommonString.WareHouseCodeRequired);
-            RuleFor(x => x.Code).MaximumLength(255)
-                .WithMessage(string.Format(CommonString.WareHouseCodeLength, 255));
-
             RuleFor(x => x.Name).NotEmpty()
                 .WithMessage(CommonString.WareHouseNameRequired);
             RuleFor(x => x.Name).MaximumLength(100)

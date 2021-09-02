@@ -26,6 +26,9 @@ namespace LocalStore.WebApp
             container.RegisterType<IValidatorFactory, UnityValidatorFactory>(
                 new ContainerControlledLifetimeManager());
 
+            container.RegisterType<IValidator<UserModel>, UserValidator>(
+                new ContainerControlledLifetimeManager());
+
             container.RegisterType<IValidator<WareHouseModel>, WareHouseValidator>(
                 new ContainerControlledLifetimeManager());
 
@@ -39,7 +42,9 @@ namespace LocalStore.WebApp
             container.RegisterInstance(mapper);
 
             // Services
-            container.RegisterType<IWareHouseService, WareHouseService>();
+            container.RegisterType<IUserService, UserService>();
+
+            container.RegisterType<IWareHouseService, WareHouseService>();         
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

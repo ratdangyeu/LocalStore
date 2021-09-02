@@ -13,13 +13,25 @@
         public static string NoDataContent = "Không có dữ liệu bản ghi";
         public static string LoadMessage = "Vui lòng chờ ...";
         public static string YesButtonContent = "Đồng ý";
+        public static string LoginFailed = "Email hoặc mật khẩu chưa chính xác";
         #endregion
 
         #region WareHouseValidators
-        public static string WareHouseCodeRequired = "Mã kho không được để trống";
-        public static string WareHouseCodeLength = "Mã kho không vượt quá {0} ký tự";
         public static string WareHouseNameRequired = "Tên kho không được để trống";
         public static string WareHouseNameLength = "Tên kho không vượt quá {0} ký tự";
+        #endregion
+
+        #region UserValidators
+        public static string UserFirstNameRequired = "Tên không được để trống";
+        public static string UserFirstNameLength = "Tên không vượt quá {0} ký tự";
+        public static string UserLastNameLength = "Họ không vượt quá {0} ký tự";
+        public static string UserEmailRequired = "Tên đăng nhập không được để trống";
+        public static string UserEmailFormat= "Email không đúng định dạng";
+        public static string UserPasswordLength = "Mật khẩu không vượt quá {0} ký tự";
+        #endregion
+
+        #region RoleValidators
+
         #endregion
 
         #region CommonValidators

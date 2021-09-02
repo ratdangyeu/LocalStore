@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using LocalStore.Domain;
+using LocalStore.Service.Helper;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,15 @@ namespace LocalStore.Service
             }
 
             entity.Id = Guid.NewGuid().ToString("D");
+            do
+            {
+                entity.Code = HelperClass.GenCode(nameof(Warehouse));
+            } while (ExistAsync(entity.Code));
+
+            if (entity.Code == null)
+            {
+                throw new ArgumentNullException(nameof(entity.Code));
+            }
 
             _warehouseRepository.InsertOnSubmit(entity);
             _dataContext.SubmitChanges();            
@@ -75,19 +85,19 @@ namespace LocalStore.Service
                 x.Code.Equals(code));
         }
 
-        public void ActivationAsync(IEnumerable<string> ids)
+        public void ActivationAsync(IEnumerable<string> ids, bool status)
         {
             if (ids == null)
             {
                 throw new ArgumentNullException(nameof(ids));
             }
 
-            var query = from p in _warehouseRepository
+            var entities = from p in _warehouseRepository
                         where ids.Contains(p.Id)
                         select p;
-            foreach(var e in query)
+            foreach(var e in entities)
             {
-                e.Inactive = !e.Inactive;
+                e.Inactive = status;
             }
             _dataContext.SubmitChanges();
         }
@@ -108,15 +118,17 @@ namespace LocalStore.Service
         #region List
         public IEnumerable<Warehouse> GetAll(bool showHidden = false)
         {
-            var query = from p in _warehouseRepository
-                        where !p.Inactive
-                        select p;
-            if (showHidden)
+            var query = from p in _warehouseRepository select p;
+
+            if (!showHidden)
             {
                 query = from p in _warehouseRepository
-                        where p.Inactive
+                        where !p.Inactive
                         select p;                
             }
+
+            query = from p in query orderby p.Code select p;
+
             return query.ToArray();
         }
 
