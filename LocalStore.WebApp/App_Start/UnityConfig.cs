@@ -26,6 +26,9 @@ namespace LocalStore.WebApp
             container.RegisterType<IValidatorFactory, UnityValidatorFactory>(
                 new ContainerControlledLifetimeManager());
 
+            container.RegisterType<IValidator<RoleModel>, RoleValidator>(
+                new ContainerControlledLifetimeManager());
+
             container.RegisterType<IValidator<UserModel>, UserValidator>(
                 new ContainerControlledLifetimeManager());
 
@@ -42,6 +45,8 @@ namespace LocalStore.WebApp
             container.RegisterInstance(mapper);
 
             // Services
+            container.RegisterType<IRoleService, RoleService>();
+
             container.RegisterType<IUserService, UserService>();
 
             container.RegisterType<IWareHouseService, WareHouseService>();         

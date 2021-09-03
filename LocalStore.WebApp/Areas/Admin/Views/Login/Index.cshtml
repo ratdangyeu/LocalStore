@@ -1,75 +1,95 @@
 ﻿@model LocalStore.WebApp.Models.UserModel
 
-<div class="login-box">
-    <div class="login-logo">
-        <a href="#"><b>Đăng</b>&nbsp;nhập</a>
-    </div>
-    <!-- /.login-logo -->
-    <div class="card">
-        <div class="card-body login-card-body">
-            <p class="login-box-msg">Đăng nhập để bắt đầu công việc</p>
-
-            <form id="loginForm">
-                @Html.AntiForgeryToken()
-                <div class="input-group mb-3">
-                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @Placeholder = "Email"})                        
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="input-group mb-3">
-                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @Placeholder = "Mật khẩu" })
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6">
-                            
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-6">
-                        <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
-                    </div>
-                    <!-- /.col -->
-                </div>
-            </form>
-
-            <p class="mb-0">
-                <a href="@Url.Action("Register", "Login")" class="text-center">Đăng ký thành viên mới</a>
-            </p>
-        </div>
-        <!-- /.login-card-body -->
-    </div>
-</div>
-<!-- /.login-box -->
-
-@section scripts{
-    <script>
-        $(function () {
-            $(document).ajaxStart(function () { Pace.restart(); });
-            $("#loginForm").on("submit", function (e) {
-                $.ajax({
-                    type: "POST",
-                    data: $(this).serialize(),
-                    url: '@Url.Action("Login")',
-                    dataType: "json"
-                }).done(function (res) {
-                    if (res.Success) {
-                        window.location.href = '@Url.Action("Index", "Home", new { area = ""})'
-                    }
-                    else {
-                        toastr.error(res.Message, '', {
-                            positionClass: 'toast-top-center'
-                        });
-                    }
-                });
-                e.preventDefault();
-            });            
-        });
-    </script>    
+@{ 
+    Layout = null;
 }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Store | Đăng nhập</title>
+    <link rel="shortcut icon" type="image/svg" href="~/adminlte/img/poi.ico" />
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="#"><b>Đăng</b>&nbsp;nhập</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Đăng nhập để bắt đầu công việc</p>
+
+                <form id="loginForm">
+                    @Html.AntiForgeryToken()
+                    <div class="input-group mb-3">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @Placeholder = "Email" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @Placeholder = "Mật khẩu" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-6">
+                            <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+
+                <p class="mb-0">
+                    <a href="@Url.Action("Register", "Login")" class="text-center">Đăng ký thành viên mới</a>
+                </p>
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+    <!-- /.login-box -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/adminlte/js")
+    <script>
+            $(function () {
+                $(document).ajaxStart(function () { Pace.restart(); });
+                $("#loginForm").on("submit", function (e) {
+                    $.ajax({
+                        type: "POST",
+                        data: $(this).serialize(),
+                        url: '@Url.Action("Login")',
+                        dataType: "json"
+                    }).done(function (res) {
+                        if (res.Success) {
+                            window.location.href = '@Url.Action("Index", "Home", new { area = ""})'
+                        }
+                        else {
+                            toastr.error(res.Message, '', {
+                                positionClass: 'toast-top-center'
+                            });
+                        }
+                    });
+                    e.preventDefault();
+                });
+            });
+    </script>
+</body>
+</html>

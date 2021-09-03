@@ -53,6 +53,9 @@
   <ItemGroup>
     <Compile Include="Helper\HelperClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Role\IRoleService.cs" />
+    <Compile Include="Services\Role\RoleSearchContext.cs" />
+    <Compile Include="Services\Role\RoleService.cs" />
     <Compile Include="Services\User\IUserService.cs" />
     <Compile Include="Services\User\UserSearchContext.cs" />
     <Compile Include="Services\User\UserService.cs" />
@@ -72,8 +75,6 @@
   <ItemGroup>
     <Content Include="Content\PagedList.css" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\Role\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

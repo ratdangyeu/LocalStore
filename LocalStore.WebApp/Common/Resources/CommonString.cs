@@ -18,6 +18,21 @@
         public static string ExistEmail = "Địa chỉ email đã tồn tại";
         #endregion
 
+        #region Titles
+        public static string CommonSignIn = "Đăng nhập";
+        public static string CommonSignOut = "Đăng xuất";
+        public static string CommonRegister = "Đăng ký";
+        public static string CommonWareHouse = "Kho vận";
+        public static string CommonWareHouseItem = "Vật tư";
+        public static string CommonWareHouseItemCategory = "Loại vật tư";
+        public static string CommonHome = "Trang chủ";
+        public static string CommonBeginningWareHouse = "Tồn kho đầu kỳ";
+        public static string CommonWareHouseBook = "Sổ kho";
+        public static string CommonVendor = "Nhà cung cấp";
+        public static string CommonUnit = "Đơn vị";
+        public static string CommonWareHouseItemUnit = "Đơn vị chuyển đổi";
+        #endregion
+
         #region WareHouseValidators
         public static string WareHouseNameRequired = "Tên kho không được để trống";
         public static string WareHouseNameLength = "Tên kho không vượt quá {0} ký tự";
@@ -34,7 +49,8 @@
         #endregion
 
         #region RoleValidators
-
+        public static string RoleNameRequired = "Tên quyền không được để trống";
+        public static string RoleNameLength = "Tên quyền không vượt quá {0} ký tự";
         #endregion
 
         #region CommonValidators
@@ -47,10 +63,23 @@
         public static string WareHouseFieldsName = "Tên kho";
         #endregion
 
+        #region UserFields
+        public static string UserFieldsCode = "Mã người dùng";
+        public static string UserFieldsFirstName = "Tên người dùng";
+        public static string UserFieldsLastName = "Họ";
+        public static string UserFieldsPassword = "Mật khẩu";
+        #endregion
+
+        #region RoleFields
+        public static string RoleFieldsCode = "Mã quyền";
+        public static string RoleFieldsName = "Tên quyền";
+        #endregion
+
         #region CommonFields
         public static string CommonFieldsAddress = "Địa chỉ";
         public static string CommonFieldsDescription = "Mô tả";
         public static string CommonFieldsInactive = "Ngừng kích hoạt";
+        public static string CommonFieldsEmail = "Hòm thư";
         #endregion
     }
 }
