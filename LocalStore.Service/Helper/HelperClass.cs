@@ -19,7 +19,7 @@ namespace LocalStore.Service.Helper
 
         #region HashPassword
         public static string HashPassword(string plainPassword)
-        {
+        {           
             StringBuilder password = new StringBuilder();
             MD5CryptoServiceProvider md5Provider = new MD5CryptoServiceProvider();
             byte[] bytes = md5Provider.ComputeHash(new UTF8Encoding().GetBytes(plainPassword));

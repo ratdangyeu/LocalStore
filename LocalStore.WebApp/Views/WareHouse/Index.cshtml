@@ -6,6 +6,7 @@
 {
     <script>                
         $(function () {
+            $(document).ajaxStart(function () { Pace.restart(); });
             $("#jsGrid").jsGrid({
                 width: "100%",
                 height: "600px",
@@ -20,6 +21,7 @@
 
                 confirmDeleting: false,
                 noDataContent: '@CommonString.NoDataContent',
+                loadIndication: false,
                 loadMessage: '',
                 //deleteConfirm: decodeURI('@CommonString.DeleteConfirm'),
 

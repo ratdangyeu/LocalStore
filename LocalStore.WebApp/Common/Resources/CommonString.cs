@@ -14,6 +14,8 @@
         public static string LoadMessage = "Vui lòng chờ ...";
         public static string YesButtonContent = "Đồng ý";
         public static string LoginFailed = "Email hoặc mật khẩu chưa chính xác";
+        public static string RetypePasswordInvalid = "Mật khẩu không trùng khớp";
+        public static string ExistEmail = "Địa chỉ email đã tồn tại";
         #endregion
 
         #region WareHouseValidators
@@ -25,9 +27,10 @@
         public static string UserFirstNameRequired = "Tên không được để trống";
         public static string UserFirstNameLength = "Tên không vượt quá {0} ký tự";
         public static string UserLastNameLength = "Họ không vượt quá {0} ký tự";
-        public static string UserEmailRequired = "Tên đăng nhập không được để trống";
+        public static string UserEmailRequired = "Email không được để trống";
         public static string UserEmailFormat= "Email không đúng định dạng";
         public static string UserPasswordLength = "Mật khẩu không vượt quá {0} ký tự";
+        public static string UserPasswordRequired = "Mật khẩu không được để trống";
         #endregion
 
         #region RoleValidators

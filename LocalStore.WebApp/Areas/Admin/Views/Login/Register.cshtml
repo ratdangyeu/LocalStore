@@ -1,17 +1,97 @@
-﻿
-@{
-    Layout = null;
-}
+﻿@model LocalStore.WebApp.Models.UserModel
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Register</title>
-</head>
-<body>
-    <div> 
+<div class="register-box">
+    <div class="register-logo">
+        <a href="../../index2.html"><b>Đăng</b>&nbsp;ký</a>
     </div>
-</body>
-</html>
+
+    <div class="card">
+        <div class="card-body register-card-body">
+            <p class="login-box-msg">Đăng ký thành viên mới</p>           
+
+            <form id="registerForm">
+                @Html.AntiForgeryToken()
+                <div class="input-group mb-3">
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "Tên" })
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Họ" })
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email"})
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Mật khẩu"})
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    @Html.PasswordFor(m => m.RetypePassword, new { @class = "form-control", @placeholder = "Nhập lại mật khẩu" })
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                            
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-primary btn-block">Đăng ký</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+            </form>            
+
+            <a href="@Url.Action("Index", "Login")" class="text-center">Đã là thành viên</a>
+        </div>
+        <!-- /.form-box -->
+    </div><!-- /.card -->
+</div>
+<!-- /.register-box -->
+
+@section scripts{
+    <script>
+        $(function () {
+            $(document).ajaxStart(function () { Pace.restart(); });
+            $('#registerForm').on("submit", function (e) {
+                $.ajax({
+                    type: "POST",
+                    data: $(this).serialize(),
+                    url: '@Url.Action("Register")',
+                    dataType: "json"
+                }).done(function (res) {
+                    if (res.Success) {
+                        window.location.href = '@Url.Action("Index", "Login")'
+                    }
+                    else {
+                        toastr.error(res.Message, '', {
+                            positionClass: 'toast-top-center'
+                        });
+                    }
+                });
+                e.preventDefault();
+            });
+        });
+    </script>    
+}

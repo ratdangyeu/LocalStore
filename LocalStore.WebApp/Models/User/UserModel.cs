@@ -16,6 +16,8 @@ namespace LocalStore.WebApp.Models
         public string Password { get; set; }
 
         public bool Inactive { get; set; }
+
+        public string RetypePassword { get; set; }
     }
 
     public class UserValidator : AbstractValidator<UserModel>
@@ -35,6 +37,8 @@ namespace LocalStore.WebApp.Models
             RuleFor(x => x.Email).EmailAddress()
                 .WithMessage(CommonString.UserEmailFormat);
 
+            RuleFor(x => x.Password).NotEmpty()
+                .WithMessage(CommonString.UserPasswordRequired);
             RuleFor(x => x.Password).MaximumLength(255)
                 .WithMessage(string.Format(CommonString.UserPasswordLength, 255));
         }

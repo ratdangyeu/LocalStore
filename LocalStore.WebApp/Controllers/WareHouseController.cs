@@ -2,12 +2,12 @@
 using FluentValidation;
 using LocalStore.Domain;
 using LocalStore.Service;
+using LocalStore.WebApp.Common.Helper;
 using LocalStore.WebApp.Models;
 using LocalStore.WebApp.Resources;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -74,7 +74,7 @@ namespace LocalStore.WebApp.Controllers
                 return JsonConvert.SerializeObject(new BaseResult<object>
                 {
                     Success = false,
-                    Message = ErrorMessageValidate(validatorResult)
+                    Message = HelperClass.ErrorMessageValidate(validatorResult)
                 });
             }
 
@@ -88,8 +88,7 @@ namespace LocalStore.WebApp.Controllers
             }
             else
             {
-                var entity = _mapper.Map<WareHouseModel, Warehouse>(model);
-                entity.Code = model.Code;
+                var entity = _mapper.Map<WareHouseModel, Warehouse>(model);                
                 _warehouseService.InsertAsync(entity);
                 return JsonConvert.SerializeObject(new BaseResult<object>
                 {
@@ -109,7 +108,7 @@ namespace LocalStore.WebApp.Controllers
                 return JsonConvert.SerializeObject(new BaseResult<object>
                 {
                     Success = false,
-                    Message = ErrorMessageValidate(validatorResult)
+                    Message = HelperClass.ErrorMessageValidate(validatorResult)
                 });
             }
 
@@ -172,18 +171,6 @@ namespace LocalStore.WebApp.Controllers
                 PageNumber = pageNumber,
                 PageSize = pageSize
             };
-        }
-
-        // Xuất lỗi validate
-        private string ErrorMessageValidate(FluentValidation.Results.ValidationResult validatorResult)
-        {
-            StringBuilder errors = new StringBuilder();
-            validatorResult.Errors.ForEach(e =>
-            {
-                errors.Append(e.ErrorMessage);
-                errors.Append("<br>");
-            });
-            return errors.ToString();
         }
         #endregion
     }

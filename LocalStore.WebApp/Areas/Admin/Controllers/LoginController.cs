@@ -2,6 +2,7 @@
 using FluentValidation;
 using LocalStore.Domain;
 using LocalStore.Service;
+using LocalStore.WebApp.Common.Helper;
 using LocalStore.WebApp.Models;
 using LocalStore.WebApp.Resources;
 using Newtonsoft.Json;
@@ -33,34 +34,95 @@ namespace LocalStore.WebApp.Areas.Admin.Controllers
         // GET: Admin/Login
         public ActionResult Index()
         {
-            return View();
+            var user = new UserModel();
+            return View(user);
         }
 
         // Xử lý đăng nhập
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public string Login(UserModel user)
         {
-            var entity = _mapper.Map<UserModel, User>(user);
-            var checkLogin = _userService.LoginAsync(entity);
-
-            if (checkLogin)
+            if (string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.Password))
             {
                 return JsonConvert.SerializeObject(new BaseResult<object>
                 {
-                    Success = true
+                    Success = false,
+                    Message = CommonString.LoginFailed
                 });
             }
-            return JsonConvert.SerializeObject(new BaseResult<object>
+            else
             {
-                Success = false,
-                Message = CommonString.LoginFailed
-            });
+                var entity = _mapper.Map<UserModel, User>(user);
+                var checkLogin = _userService.LoginAsync(entity);
+
+                if (checkLogin)
+                {
+                    return JsonConvert.SerializeObject(new BaseResult<object>
+                    {
+                        Success = true
+                    });
+                }
+                else
+                {
+                    return JsonConvert.SerializeObject(new BaseResult<object>
+                    {
+                        Success = false,
+                        Message = CommonString.LoginFailed
+                    });
+                }
+            }                       
         }
 
         public ActionResult Register()
         {
             return View();
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public string Register(UserModel user)
+        {
+            var validateResult = _validator.Validate(user);
+
+            if (!validateResult.IsValid)
+            {
+                return JsonConvert.SerializeObject(new BaseResult<object>
+                {
+                    Success = false,
+                    Message = HelperClass.ErrorMessageValidate(validateResult)
+                });
+            }
+
+            if (_userService.ExistAsyncEmail(user.Email))
+            {
+                return JsonConvert.SerializeObject(new BaseResult<object>
+                {
+                    Success = false,
+                    Message = CommonString.ExistEmail
+                });
+            }
+
+            if (user.Password != user.RetypePassword)
+            {
+                return JsonConvert.SerializeObject(new BaseResult<object>
+                {
+                    Success = false,
+                    Message = CommonString.RetypePasswordInvalid
+                });
+            }
+
+            var entity = _mapper.Map<UserModel, User>(user);
+            _userService.InsertAsync(entity);
+            return JsonConvert.SerializeObject(new BaseResult<object>
+            {
+                Success = true
+            });
+        }
+        #endregion
+
+        #region Utilities
+
         #endregion
     }
 }

@@ -2231,6 +2231,7 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
+    <Compile Include="Common\Helper\HelperClass.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WareHouseController.cs" />
     <Compile Include="Global.asax.cs">
