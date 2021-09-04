@@ -19,6 +19,8 @@ namespace LocalStore.WebApp.Models
 
         public bool Inactive { get; set; }
 
+        public string StoreId { get; set; }
+
         public WareHouseModel()
         {
             Inactive = false;

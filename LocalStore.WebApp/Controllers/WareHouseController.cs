@@ -78,7 +78,7 @@ namespace LocalStore.WebApp.Controllers
                 });
             }
 
-            if (model == null || _warehouseService.ExistAsync(model.Code))
+            if (model == null)
             {
                 return JsonConvert.SerializeObject(new BaseResult<object>
                 {

@@ -80,6 +80,8 @@
         public static string CommonFieldsDescription = "Mô tả";
         public static string CommonFieldsInactive = "Ngừng kích hoạt";
         public static string CommonFieldsEmail = "Hòm thư";
+        public static string CommonFieldsCreatedDate = "Ngày tạo";
+        public static string CommonFieldsModifiedDate = "Ngày chỉnh sửa";
         #endregion
     }
 }

@@ -29,7 +29,7 @@ namespace LocalStore.WebApp
                       "~/adminlte/plugins/jsgrid/jsgrid.min.css",
                       "~/adminlte/plugins/jsgrid/jsgrid-theme.min.css",
                       "~/adminlte/plugins/toastr/toastr.min.css",
-                      "~/adminlte/plugins/pace-progress/themes/blue/pace-theme-corner-indicator.css",
+                      "~/adminlte/plugins/pace-progress/themes/blue/pace-theme-minimal.css",
                       "~/Content/Site.css"));
 
             bundles.Add(new ScriptBundle("~/adminlte/js").Include(

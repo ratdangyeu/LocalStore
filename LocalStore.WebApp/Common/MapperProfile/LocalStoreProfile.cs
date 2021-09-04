@@ -21,13 +21,21 @@ namespace LocalStore.WebApp.MapperProfile
 
             #region User
             CreateMap<User, UserModel>()
-                .ForMember(x => x.RetypePassword, opt => opt.Ignore());
+                .ForMember(x => x.RetypePassword, opt => opt.Ignore())
+                .ForMember(x => x.StrCreatedDate, opt => opt.Ignore())
+                .ForMember(x => x.StrModifiedDate, opt => opt.Ignore())
+                .ForMember(x => x.CreatedDate, opt => opt.Ignore())
+                .ForMember(x => x.ModifiedDate, opt => opt.Ignore());
             CreateMap<UserModel, User>()
                 .ForMember(x => x.Code, opt => opt.Ignore())
-                .ForMember(x => x.UserRoles, opt => opt.Ignore());
+                .ForMember(x => x.UserRoles, opt => opt.Ignore())
+                .ForMember(x => x.CreatedDate, opt => opt.Ignore())
+                .ForMember(x => x.ModifiedDate, opt => opt.Ignore());
             CreateMap<User, User>()
                 .ForMember(x => x.Code, opt => opt.Ignore())
-                .ForMember(x => x.UserRoles, opt => opt.Ignore());
+                .ForMember(x => x.UserRoles, opt => opt.Ignore())
+                .ForMember(x => x.CreatedDate, opt => opt.Ignore())
+                .ForMember(x => x.ModifiedDate, opt => opt.Ignore());
 
             CreateMap<UserSearchModel, UserSearchContext>();
             #endregion

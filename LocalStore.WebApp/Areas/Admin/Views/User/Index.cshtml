@@ -1,1 +1,164 @@
-﻿
+﻿@using LocalStore.WebApp.Resources
+
+<div id="jsGrid"></div>
+
+@section scripts
+{
+    <script>
+
+        $(function () {
+            $(document).ajaxStart(function () { Pace.restart(); });
+            $("#jsGrid").jsGrid({
+                width: "100%",
+                height: "650px",
+
+                inserting: true,
+                editing: true,
+                filtering: true,
+                autoload: true,
+                paging: true,
+                pageLoading: true,
+                //sorting: true,
+
+                confirmDeleting: false,
+                noDataContent: '@CommonString.NoDataContent',
+                loadIndication: false,
+                loadMessage: '',
+                //deleteConfirm: decodeURI('@CommonString.DeleteConfirm'),
+
+                controller: {
+                    loadData: function (filter) {
+                        return $.ajax({
+                            type: "GET",
+                            url: '@Url.Action("LoadData")',
+                            data: filter,
+                            contentType: "application/json",
+                            dataType: "json"
+                        });
+                    },
+
+                    insertItem: function (item) {
+                        return $.ajax({
+                            type: "POST",
+                            url: '@Url.Action("InsertData")',
+                            data: {
+                               model: item, __RequestVerificationToken: getToken()
+                            },
+                            dataType: "json"
+                        }).done(function (res) {
+                            if (!res.Success) {
+                               toastr.error(res.Message, '',
+                               {
+                                    positionClass: 'toast-top-center'
+                               });
+                            }
+                            else {
+                               toastr.info(res.Message, '',
+                               {
+                                    positionClass: 'toast-top-center'
+                               });
+                            }
+
+                            $('#jsGrid').jsGrid('loadData');
+                        });
+                    },
+
+                    updateItem: function (item) {
+                        return $.ajax({
+                            type: "POST",
+                            url: '/Admin/User/UpdateData/' + item.Id,
+                            data: {
+                               model: item, __RequestVerificationToken: getToken()
+                            },
+                            dataType: "json"
+                        }).done(function (res) {
+                            if (!res.Success) {
+                               toastr.error(res.Message, '',
+                               {
+                                    positionClass: 'toast-top-center'
+                               });
+                            }
+                            else {
+                               toastr.info(res.Message, '',
+                               {
+                                    positionClass: 'toast-top-center'
+                               });
+                            }
+
+                            $('#jsGrid').jsGrid('loadData');
+                        });
+                    },
+
+                    deleteItem: function (item) {
+                        toastr.options = {
+                            "closeButton": true,
+                            "positionClass": "toast-top-center",
+                            "timeOut": 0,
+                            "extendedTimeOut": 0,
+                            "tapToDismiss": false
+                        };
+
+                        toastr.error('@CommonString.DeleteConfirm' +
+                                     '<br /><br /><button type="button" id="actionDelete" class="btn btn-light">' +
+                                     '@CommonString.YesButtonContent' + '</button>', '',
+                            {
+                                onShown: function (toast) {
+                                    $('#actionDelete').click(function () {
+                                        toastr.remove();
+                                        toastr.options.closeButton = false;
+                                        toastr.options.tapToDismiss = true;
+                                        toastr.options.timeOut = 5000;
+                                        toastr.options.extendedTimeOut = 1000;
+                                        $.ajax({
+                                            type: "POST",
+                                            url: '/Admin/User/DeleteData/' + item.Id,
+                                            data: {
+                                                __RequestVerificationToken: getToken()
+                                            },
+                                            dataType: "json"
+                                        }).done(function (res) {
+                                            if (!res.Success) {
+                                                toastr.error(res.Message);
+                                            }
+                                            else {
+                                                toastr.info(res.Message);
+                                            }
+
+                                            $('#jsGrid').jsGrid('loadData');
+                                        });
+                                    });
+                                },
+
+                                onHidden: function () {
+                                    toastr.options.closeButton = false;
+                                    toastr.options.tapToDismiss = true;
+                                    toastr.options.timeOut = 5000;
+                                    toastr.options.extendedTimeOut = 1000;
+                                }
+                            });
+                    }
+                },
+
+                fields: [
+                    { name: "Code", title: '@CommonString.UserFieldsCode', type: "text", width: 150, editing: false, inserting: false },
+                    { name: "Email", title: '@CommonString.CommonFieldsEmail', type: "text", width: 250 },
+                    { name: "FirstName", title: '@CommonString.UserFieldsFirstName', type: "text", width: 200, filtering: false },
+                    { name: "LastName", title: '@CommonString.UserFieldsLastName', type: "text", width: 200, filtering: false },
+                    { name: "Password", title: '@CommonString.UserFieldsPassword', type: "text", width: 300, filtering: false },
+                    { name: "StrCreatedDate", title: '@CommonString.CommonFieldsCreatedDate', type: "text", width: 200, filtering: false, editing: false, inserting: false },
+                    { name: "StrModifiedDate", title: '@CommonString.CommonFieldsModifiedDate', type: "text", width: 200, filtering: false, editing: false, inserting: false },
+                    { name: "Inactive", title: '@CommonString.CommonFieldsInactive', type: "checkbox", width: 100 },
+                    { type: "control"}
+                ]
+            });
+        });
+
+        var getToken = function () {
+            var token = '@Html.AntiForgeryToken()';
+            token = $(token).val();
+            return token;
+        }
+    </script>
+}
+
+

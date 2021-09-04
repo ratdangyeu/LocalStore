@@ -46,6 +46,7 @@ namespace LocalStore.Service
             }
 
             entity.Password = HelperClass.HashPassword(entity.Password);
+            entity.CreatedDate = entity.ModifiedDate = DateTime.UtcNow;
 
             _userRepository.InsertOnSubmit(entity);
             _dataContext.SubmitChanges();
@@ -62,8 +63,12 @@ namespace LocalStore.Service
 
             if (e != null)
             {
-                entity.Password = HelperClass.HashPassword(entity.Password);
+                if (!entity.Password.Equals(e.Password))
+                {
+                    entity.Password = HelperClass.HashPassword(entity.Password);
+                }                
                 e = _mapper.Map(entity, e);
+                e.ModifiedDate = DateTime.UtcNow;
                 _dataContext.SubmitChanges();
             }
         }
