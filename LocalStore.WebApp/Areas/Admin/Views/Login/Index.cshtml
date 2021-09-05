@@ -30,7 +30,7 @@
                 <form id="loginForm">
                     @Html.AntiForgeryToken()
                     <div class="input-group mb-3">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @Placeholder = "Email" })
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @Placeholder = "Email *" })
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @Placeholder = "Mật khẩu" })
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @Placeholder = "Mật khẩu *" })
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>

@@ -2131,6 +2131,7 @@
     <Content Include="Areas\Admin\Views\Login\Register.cshtml" />
     <Content Include="Areas\Admin\Views\User\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\CreateStore.cshtml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -2247,6 +2248,8 @@
     <Compile Include="Common\Resources\CommonString.cs" />
     <Compile Include="Models\Role\RoleModel.cs" />
     <Compile Include="Models\Role\RoleSearchModel.cs" />
+    <Compile Include="Models\Store\StoreModel.cs" />
+    <Compile Include="Models\Store\StoreSearchModel.cs" />
     <Compile Include="Models\User\UserModel.cs" />
     <Compile Include="Models\User\UserSearchModel.cs" />
     <Compile Include="Models\WareHouse\WareHouseModel.cs" />

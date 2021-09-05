@@ -10,6 +10,11 @@ namespace LocalStore.WebApp.Models
         public string Name { get; set; }
 
         public bool Inactive { get; set; } 
+
+        public RoleModel()
+        {
+            Inactive = false;
+        }
     }
 
     public class RoleValidator : AbstractValidator<RoleModel>

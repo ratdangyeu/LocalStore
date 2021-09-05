@@ -11,9 +11,10 @@ namespace LocalStore.Service.Helper
         #region Fields
         static readonly Dictionary<string, string> prefixCodes = new Dictionary<string, string>
         {
-            { nameof(Warehouse), "KH" },
+            { nameof(Warehouse), "WH" },
             { nameof(User), "US" },
-            { nameof(Role), "RL" }
+            { nameof(Role), "RL" },
+            { nameof(UserRole), "UR" }
         };
         #endregion
 

@@ -1,15 +1,13 @@
-﻿@model LocalStore.WebApp.Models.UserModel
+﻿@model LocalStore.WebApp.Models.StoreModel
 
-@{ 
-    Layout = null;
-}
+@{ Layout = null; }
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Store | Đăng ký</title>
+    <title>My Store | Tạo mới cửa hàng</title>
     <link rel="shortcut icon" type="image/svg" href="~/adminlte/img/poi.ico" />
 
     <!-- Google Font: Source Sans Pro -->
@@ -20,17 +18,17 @@
 <body class="hold-transition login-page">
     <div class="register-box">
         <div class="register-logo">
-            <a href="../../index2.html"><b>Đăng</b>&nbsp;ký</a>
+            <a href="../../index2.html"><b>Cửa hàng</b>&nbsp;của tôi</a>
         </div>
 
         <div class="card">
             <div class="card-body register-card-body">
-                <p class="login-box-msg">Đăng ký thành viên mới</p>
+                <p class="login-box-msg">Thiết lập cửa hàng</p>
 
-                <form id="registerForm">
+                <form id="createStoreForm">
                     @Html.AntiForgeryToken()
                     <div class="input-group mb-3">
-                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "Tên *" })
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Tên cửa hàng" })
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -38,34 +36,26 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Họ" })
+                        @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @placeholder = "Địa chỉ" })
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
                             </div>
                         </div>
+                    </div>                    
+                    <div class="input-group mb-3">
+                        @Html.TextBoxFor(m => m.BusinessModel, new { @class = "form-control", @placeholder = "Loại hình kinh doanh" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
                     </div>
                     <div class="input-group mb-3">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email *" })
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @placeholder = "Mô tả cửa hàng" })
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Mật khẩu *" })
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        @Html.PasswordFor(m => m.RetypePassword, new { @class = "form-control", @placeholder = "Nhập lại mật khẩu *" })
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
                             </div>
                         </div>
                     </div>
@@ -75,13 +65,11 @@
                         </div>
                         <!-- /.col -->
                         <div class="col-6">
-                            <button type="submit" class="btn btn-primary btn-block">Đăng ký</button>
+                            <button type="submit" class="btn btn-primary btn-block">Khởi tạo</button>
                         </div>
                         <!-- /.col -->
                     </div>
                 </form>
-
-                <a href="@Url.Action("Index", "Login")" class="text-center">Đã là thành viên</a>
             </div>
             <!-- /.form-box -->
         </div><!-- /.card -->
@@ -93,15 +81,15 @@
     <script>
         $(function () {
             $(document).ajaxStart(function () { Pace.restart(); });
-            $('#registerForm').on("submit", function (e) {
+            $('#createStoreForm').on("submit", function (e) {
                 $.ajax({
                     type: "POST",
                     data: $(this).serialize(),
-                    url: '@Url.Action("Register")',
+                    url: '@Url.Action("CreateStore")',
                     dataType: "json"
                 }).done(function (res) {
                     if (res.Success) {
-                        window.location.href = '@Url.Action("CreateStore", "Login")'
+                        window.location.href = '@Url.Action("Index", "Login")'
                     }
                     else {
                         toastr.error(res.Message, '', {

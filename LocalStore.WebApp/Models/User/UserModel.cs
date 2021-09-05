@@ -27,6 +27,11 @@ namespace LocalStore.WebApp.Models
         public string StrModifiedDate { get; set; }
 
         public string RetypePassword { get; set; }
+
+        public UserModel()
+        {
+            Inactive = false;
+        }
     }
 
     public class UserValidator : AbstractValidator<UserModel>

@@ -53,6 +53,11 @@
         public static string RoleNameLength = "Tên quyền không vượt quá {0} ký tự";
         #endregion
 
+        #region StoreValidators
+        public static string StoreNameRequired = "Tên cửa hàng không được để trống";
+        public static string StoreNameLength = "Tên cửa hàng không vượt quá {0} ký tự";
+        #endregion
+
         #region CommonValidators
         public static string CommonAddressLength = "Địa chỉ không vượt quá {0} ký tự";
         public static string CommonDescriptionLength = "Mô tả không vượt quá {0} ký tự";
